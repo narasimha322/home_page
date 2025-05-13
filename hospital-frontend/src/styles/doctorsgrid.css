@@ -1,0 +1,23 @@
+.doctors-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .doctors-section h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  .subtext {
+    color: #555;
+    margin-bottom: 32px;
+  }
+  
+  .doctors-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
