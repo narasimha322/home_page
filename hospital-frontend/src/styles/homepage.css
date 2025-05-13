@@ -1,0 +1,74 @@
+
+  .hero-box {
+    background-color: rgba(43, 122, 250, 0.842);
+    border-radius: 8px;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 60px 40px 0 40px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  /* Flex container */
+  .hero-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-content {
+      flex-direction: row;
+    }
+  }
+  
+  /* Text Section */
+  .hero-text {
+    flex: 1;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-text {
+      text-align: left;
+      margin-top: 0;
+    }
+  }
+  
+  .hero-text h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .hero-text p {
+    font-size: 18px;
+    color: #e0e0ff;
+    margin-bottom: 30px;
+  }
+  
+  .hero-button {
+    background-color: white;
+    color: #635BFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:  0.3s;
+  }
+  
+  .hero-button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Image Section */
+  .hero-image img {
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: -4px; /* Touches bottom of section */
+  }
+  

@@ -1,0 +1,45 @@
+.doctor-card {
+    background-color: #f9faff;
+    border: 1px solid #e0e0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    padding: 0;
+  }
+  
+  .doctor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .doctor-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    background-color: #dfe7ff;
+  }
+  
+  .doctor-info {
+    padding: 0px;
+  }
+  
+  .availability {
+    color: green;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  
+  .specialty {
+    color: #555;
+    margin-top: 4px;
+  }
+  

@@ -1,0 +1,40 @@
+.contact-section {
+    padding: 60px 20px;
+  }
+  
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-evenly; /* Ensure the content is spread out horizontally */
+    flex-direction: row; /* This ensures the content is aligned left to right */
+  }
+  
+  .contact-image {
+    flex: 1 1 40%; /* Adjust the percentage to make space for the content */
+  }
+  
+  .contact-image img {
+    width: 90%; /* Ensure image fills its container */
+    border-radius: 12px;
+  }
+  
+  .contact-content {
+    flex: 1 1 56%; /* Adjust the percentage to make space for the image */
+  }
+  
+  .contact-content h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  
+  .contact-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #444;
+  }
+  
