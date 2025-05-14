@@ -1,9 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (
-    DoctorViewSet, PatientViewSet, AppointmentViewSet, MedicalHistoryViewSet,
-    TabletViewSet, ScanViewSet, RoomViewSet, BillViewSet
-)
+from django.conf.urls.static import static
+from django.conf import settings
+
+from .views import *
 
 router = DefaultRouter()
 router.register(r'doctors', DoctorViewSet)
@@ -14,7 +14,8 @@ router.register(r'tablets', TabletViewSet)
 router.register(r'scans', ScanViewSet)
 router.register(r'rooms', RoomViewSet)
 router.register(r'bills', BillViewSet)
+router.register(r'beds', BedViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-]
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

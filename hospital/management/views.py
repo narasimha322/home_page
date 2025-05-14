@@ -1,10 +1,12 @@
 from rest_framework import viewsets
 from .models import *
+from rest_framework.parsers import MultiPartParser, FormParser
 from .serializers import *
 
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
+    parser_classes = [MultiPartParser, FormParser] 
 
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
@@ -29,6 +31,18 @@ class ScanViewSet(viewsets.ModelViewSet):
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
+
+class BedViewSet(viewsets.ModelViewSet):
+    queryset = Bed.objects.all()
+    serializer_class = BedSerializer
+
+    def perform_create(self, serializer):
+        # Assign patient and mark bed as occupied
+        bed = serializer.save()
+        if bed.patient:
+            bed.is_occupied = True
+            bed.save()
+
 
 class BillViewSet(viewsets.ModelViewSet):
     queryset = Bill.objects.all()

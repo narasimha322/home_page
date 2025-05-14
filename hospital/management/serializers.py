@@ -32,14 +32,22 @@ class ScanSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RoomSerializer(serializers.ModelSerializer):
-    is_bed_available = serializers.SerializerMethodField()
-
-    def get_is_bed_available(self, obj):
-        return obj.is_bed_available()
+    available_beds = serializers.SerializerMethodField()
 
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = ['id', 'room_number', 'total_beds', 'available_beds']
+
+    def get_available_beds(self, obj):
+        return obj.available_beds()
+    
+class BedSerializer(serializers.ModelSerializer):
+    patient = PatientSerializer(read_only=True)
+    patient_id = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all(), source='patient', write_only=True, required=False)
+
+    class Meta:
+        model = Bed
+        fields = ['id', 'room', 'bed_number', 'is_occupied', 'patient', 'patient_id']
 
 class BillSerializer(serializers.ModelSerializer):
     is_ready_for_discharge = serializers.SerializerMethodField()
@@ -56,8 +64,9 @@ class BillSerializer(serializers.ModelSerializer):
         report_charges = 500  # Or calculate dynamically if needed
         xray_charges = 750  # Optional logic for x-ray
 
-        initial_amount = bed_charges + scan_charges + report_charges + xray_charges
-        balance_amount = initial_amount  # You can later subtract payments
+        initial_amount = 0
+        total_amount = bed_charges + scan_charges + report_charges + xray_charges
+        balance_amount = total_amount - initial_amount  # You can later subtract payments
 
         # Inject calculated values into validated_data
         validated_data.update({
@@ -67,6 +76,7 @@ class BillSerializer(serializers.ModelSerializer):
             'xray_charges': xray_charges,
             'initial_amount': initial_amount,
             'balance_amount': balance_amount,
+            'total_amount' : total_amount,
         })
 
         return super().create(validated_data)
