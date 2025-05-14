@@ -11,7 +11,15 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
-    return {'refresh': str(refresh), 'access': str(refresh.access_token)}
+
+    # Optional: Add custom claims
+    refresh.payload['is_staff'] = user.is_staff
+    refresh.payload['is_superuser'] = user.is_superuser
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
 
 class RegisterView(APIView):
     def post(self, request):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Doctor, Patient, Appointment, MedicalHistory, Tablet, Scan, Room, Bill
+from .models import Doctor, Patient, Appointment, MedicalHistory, Tablet, Scan, Room, Bill,Bed
 
 
 @admin.register(Doctor)
@@ -43,8 +43,16 @@ class ScanningAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ['id', 'room_number', 'total_beds', 'available_beds']
-    search_fields = ['room_number']
+    list_display = ['room_number', 'total_beds', 'available_beds_display']
+
+    def available_beds_display(self, obj):
+        return obj.available_beds()
+    available_beds_display.short_description = 'Available Beds'
+
+@admin.register(Bed)
+class BedAdmin(admin.ModelAdmin):
+    list_display = ['bed_number', 'room', 'is_occupied', 'patient']
+    list_filter = ['room', 'is_occupied']
 
 
 @admin.register(Bill)
